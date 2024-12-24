@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ครูเกษตรออนไลน์ (เรียนได้ทุกที่...ทุกเวลา)</title>
+  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
   <style>
     html, body {
       margin: 0;
@@ -16,10 +17,40 @@
       border: none;
       width: 100%;
       height: 100%;
+      display: none; /* เริ่มต้นซ่อน iframe */
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup img {
+      max-width: 80%;
+      height: auto;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <iframe src="https://script.google.com/macros/s/AKfycbwU1gqX3lfcACl6rPZ1Tlo9R1ikF7DFFx-Dfce0p4dVo8I_q1MmSy7g6vlfu_lcHzAJ-Q/exec?embedded=true"></iframe>
+  <div class="popup" id="popup">
+    <a href="#" onclick="startApp()">
+      <img src="https://firebasestorage.googleapis.com/v0/b/images-1f2b2.appspot.com/o/pic-projet%2F2025-2.png?alt=media&token=05fedae8-c998-44df-b824-a34a454228c6" alt="Welcome Popup">
+    </a>
+  </div>
+  <iframe id="iframe" src="https://script.google.com/macros/s/AKfycbwU1gqX3lfcACl6rPZ1Tlo9R1ikF7DFFx-Dfce0p4dVo8I_q1MmSy7g6vlfu_lcHzAJ-Q/exec?embedded=true"></iframe>
+
+  <script>
+    function startApp() {
+      document.getElementById('popup').style.display = 'none'; // ซ่อน popup
+      document.getElementById('iframe').style.display = 'block'; // แสดง iframe
+    }
+  </script>
 </body>
 </html>
