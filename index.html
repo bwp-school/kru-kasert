@@ -39,23 +39,28 @@
     }
     .popup button {
       margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
-      background-color: #f44336;
+      background-color: #ff9800;
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
     }
     .popup button:hover {
-      background-color: #d32f2f;
+      background-color: #e68900;
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
   <div class="popup" id="popup">
     <a href="#" onclick="startApp()">
-      <img src="https://firebasestorage.googleapis.com/v0/b/images-1f2b2.appspot.com/o/pic-projet%2F2025-2.png?alt=media&token=05fedae8-c998-44df-b824-a34a454228c6https://firebasestorage.googleapis.com/v0/b/images-1f2b2.appspot.com/o/pic-projet%2F2025-2.png?alt=media&token=05fedae8-c998-44df-b824-a34a454228c6https://firebasestorage.googleapis.com/v0/b/images-1f2b2.appspot.com/o/pic-projet%2F2025-2.png?alt=media&token=05fedae8-c998-44df-b824-a34a454228c6" alt="Welcome Popup">
+      <img src="https://firebasestorage.googleapis.com/v0/b/images-1f2b2.appspot.com/o/pic-projet%2F2025-2.png?alt=media&token=05fedae8-c998-44df-b824-a34a454228c6" alt="Welcome Popup">
     </a>
     <button onclick="startApp()">ปิด</button>
   </div>
