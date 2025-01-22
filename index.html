@@ -27,6 +27,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.8);
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -38,14 +39,19 @@
       border-radius: 15px; /* ขอบโค้งมน */
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* เพิ่มเงา */
     }
+    .countdown-text {
+      font-size: 24px;
+      color: #FFF;
+      text-align: center;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body>
- 
   <div class="popup" id="popup">
-    <div id="countdown" style="font-size: 18px; color: red; margin-bottom: 15px;"></div>
+    <div id="countdown" class="countdown-text"></div>
   </div>
- 
+
   <iframe id="iframe" src="https://script.google.com/macros/s/AKfycbzvggdkm-s7ehyiIuWm826nLZS2f3cv-i2d3nprypa5fxxDj_hfMB6VoPPua-qxOCr_/exec?embedded=true"></iframe>
 
   <script>
@@ -54,28 +60,29 @@
       document.getElementById('iframe').style.display = 'block'; // แสดง iframe
     }
 
-    // ตั้งเวลาปิด popup อัตโนมัติหลัง 5 วินาที
-    setTimeout(startApp, 5000);
+    function countdown() {
+      const targetDate = new Date('2025-02-02T08:00:00'); // กำหนดวันที่และเวลาสอบ O-NET
+      const countdownElement = document.getElementById('countdown');
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        if (distance < 0) {
+          countdownElement.innerHTML = "สอบ O-NET กำลังเริ่ม!";
+          clearInterval(timer);
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          countdownElement.innerHTML = `${days} วัน ${hours} ชั่วโมง ${minutes} นาที ${seconds} วินาที`;
+        }
+      }, 1000);
+    }
+
+    window.onload = () => {
+      countdown();
+      setTimeout(startApp, 10000); // ซ่อน popup หลังจาก 5 วินาที
+    };
   </script>
-  <script>
-     function countdown() {
-        const targetDate = new Date('2025-02-02T08:00:00'); // กำหนดวันที่และเวลาสอบ O-NET
-        setInterval(() => {
-          const now = new Date().getTime();
-          const distance = targetDate - now;
-          if (distance < 0) {
-            document.getElementById('countdown').innerHTML = "สอบ O-NET กำลังเริ่ม!";
-          } else {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById('countdown').innerHTML = 
-              "" + days + " วัน " + hours + " ชั่วโมง " + minutes + " นาที " + seconds + " วินาที";
-          }
-        }, 1000);
-      }
-      window.onload = countdown;
-    </script>
 </body>
 </html>
